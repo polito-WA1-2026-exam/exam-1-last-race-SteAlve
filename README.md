@@ -9,16 +9,34 @@
 
 ## API Server
 
-- POST `/api/something`
-  - request parameters and request body content
-  - response body content
-- GET `/api/something`
-  - request parameters
-  - response body content
-- POST `/api/something`
-  - request parameters and request body content
-  - response body content
-- ...
+- POST `/api/sessions`
+  - request body: `{ username: string, password: string }`
+  - response: `{ id: number, username: string, name: string }` or 401
+
+- GET `/api/sessions/current`
+  - response: `{ id: number, username: string, name: string }` or 401
+
+- DELETE `/api/sessions/current`
+  - response: 200
+
+- GET `/api/segments`
+  - requires login
+  - response: `[{ fromId: number, fromName: string, toId: number, toName: string }]`
+
+- POST `/api/games`
+  - requires login
+  - response: `{ id: number, startStation: { id: number, name: string }, endStation: { id: number, name: string } }`
+
+- POST `/api/games/:id/route`
+  - requires login
+  - URL parameter: `id` - game id
+  - request body: `{ route: [number] }` - ordered array of station ids
+  - response (valid route): `{ valid: true, steps: [{ from: string, to: string, event: string, effect: number, coinsAfter: number }], finalScore: number }`
+  - response (invalid route): `{ valid: false, finalScore: 0 }`
+
+- GET `/api/leaderboard`
+  - requires login
+  - response: `[{ name: string, bestScore: number }]`
 
 ## Database Tables
 
