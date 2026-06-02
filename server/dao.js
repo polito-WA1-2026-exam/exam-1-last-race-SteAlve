@@ -57,3 +57,13 @@ export const getNetwork = () => {
         });
     });
 };
+
+//EVENTS
+export const getEvents = () => {
+    return new Promise((resolve, reject) => {
+        db.all('SELECT id, description, effect FROM event', [], (err, rows) => {
+            if (err) reject(err);
+            else resolve(rows);
+        });
+    });
+};
