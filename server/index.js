@@ -6,7 +6,7 @@ import session from 'express-session';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
 
-import { getUser } from './dao.js';
+import { getUser } from './dao_user.js';
 
 // init express
 const app = new express();
