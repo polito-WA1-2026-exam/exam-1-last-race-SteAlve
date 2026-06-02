@@ -50,11 +50,6 @@ app.use(session({
 app.use(passport.authenticate('session'));
 
 const isLoggedIn = (req, res, next) => {
-  if (req.isAuthenticated()) return next();
-  return res.status(401).json({ error: 'Not authorized' });
-};
-
-const isLoggedIn = (req, res, next) => {
   if(req.isAuthenticated()) {
     return next();
   }
@@ -80,6 +75,28 @@ app.delete("/api/sessions/current", (req, res) => {
   req.logout(() => {
     res.end();
   });
+});
+
+// GET /api/segments
+app.get('/api/segments', isLoggedIn, async (req, res) => {
+
+});
+
+// POST /api/games
+app.post('/api/games', isLoggedIn, async (req, res) => {
+
+});
+
+// POST /api/games/:id/route
+app.post('/api/games/:id/route', isLoggedIn, [
+    check('route').isArray({ min: 1 }),
+], async (req, res) => {
+
+});
+
+// GET /api/leaderboard
+app.get('/api/leaderboard', isLoggedIn, async (req, res) => {
+
 });
 
 // activate the server
