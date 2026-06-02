@@ -4,29 +4,21 @@ const db = new sqlite.Database('./last-race.sqlite', err => {
   if (err) throw err;
 });
 
-//NETWORK
-export const getNetwork = () => {
+// NETWORK
+export const getSegments = () => {
     return new Promise((resolve, reject) => {
         const sql = `
-          SELECT l.id AS lineId, l.name AS lineName,
-          s.id AS stationId, s.name AS stationName
-          FROM line_station ls, line l, station s
-          WHERE ls.line_id = l.id
-            AND ls.station_id = s.id
-          ORDER BY l.id, ls.position
+            SELECT s1.id   AS fromId,   s1.name AS fromName,
+                   s2.id   AS toId,     s2.name AS toName
+            FROM line_station ls1, line_station ls2, station s1, station s2
+            WHERE ls1.line_id    = ls2.line_id
+              AND ls1.position+1 = ls2.position
+              AND ls1.station_id = s1.id
+              AND ls2.station_id = s2.id
         `;
         db.all(sql, [], (err, rows) => {
-            if (err) { reject(err); return; }
-
-            const linesMap = new Map();
-            for (const row of rows) {
-                if (!linesMap.has(row.lineId))
-                    //Map of lines, each line contains an array of stations (the index in the array is the position of the station)
-                    linesMap.set(row.lineId, { id: row.lineId, name: row.lineName, stations: [] });
-                linesMap.get(row.lineId).stations.push({ id: row.stationId, name: row.stationName });
-            }
-            //Return an array because we don't need a direct access to lines
-            resolve(Array.from(linesMap.values()));
+            if (err) reject(err);
+            else resolve(rows);
         });
     });
 };
