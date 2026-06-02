@@ -1,5 +1,5 @@
-# Exam #N: "Exam Title"
-## Student: s123456 LASTNAME FIRSTNAME 
+# Exam #1: "Last Race"
+## Student: s354116 ALVERINO STEFANO 
 
 ## React Client Application Routes
 
@@ -22,9 +22,12 @@
 
 ## Database Tables
 
-- Table `users` - contains xx yy zz
-- Table `something` - contains ww qq ss
-- ...
+- Table `station` - stores all metro stations (id, name)
+- Table `line` - stores all metro lines (id, name)
+- Table `line_station` - junction table linking stations to lines with their position order; used to define the network topology and derive all connections
+- Table `event` - stores random events that can occur during a segment (id, description, effect from -4 to +4)
+- Table `user` - stores registered users with hashed password and salt for authentication (id, email, name, hashed_password, salt)
+- Table `game` - stores each game session with assigned start/end stations and final score (NULL while in planning phase) (id, user_id, start_station_id, end_station_id, score)
 
 ## Main React Components
 
