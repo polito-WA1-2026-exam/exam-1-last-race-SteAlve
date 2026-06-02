@@ -72,7 +72,6 @@ async function initDb() {
         score            INTEGER
     )`);
 
-    // stations (9 from assignment example + 3 extensions)
     const stations = [
         "Centrale",            // 1  - Red + Blue interchange
         "Porta Velaria",       // 2  - Red + Green interchange
@@ -138,7 +137,7 @@ async function initDb() {
             [email, name, hash, salt]);
     }
 
-    // games (Mario e Giulia hanno già giocato)
+    // games (Mario e Giulia have already played)
     const games = [
         [1, 10, 12, 22],
         [1, 11, 3, 8],
