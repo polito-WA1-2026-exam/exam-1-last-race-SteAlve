@@ -26,3 +26,46 @@ function bfs(graph, startId) {
     return dist;
 }
 
+// PICK START/END
+export function pickStartEnd(graph) {
+    const ids = [...graph.keys()];
+    const shuffled = [...ids].sort(() => Math.random() - 0.5);
+    for (const startId of shuffled) {
+        const dist = bfs(graph, startId);
+        const candidates = ids.filter(id => dist.get(id) >= 3);
+        if (candidates.length > 0) {
+            const endId = candidates[Math.floor(Math.random() * candidates.length)];
+            return { startId, endId };
+        }
+    }
+    throw new Error('No valid start/end pair found');
+}
+
+// VALIDATE ROUTE
+export function validateRoute(graph, route, startId, endId) {
+    if (!Array.isArray(route) || route.length < 2) return false;
+    if (route[0] !== startId) return false;
+    if (route[route.length - 1] !== endId) return false;
+    for (let i = 0; i < route.length - 1; i++) {
+        if (!graph.get(route[i])?.has(route[i + 1])) return false;
+    }
+    return true;
+}
+
+// EXECUTE ROUTE
+export function executeRoute(stationMap, events, route) {
+    let coins = 20;
+    const steps = [];
+    for (let i = 0; i < route.length - 1; i++) {
+        const event = events[Math.floor(Math.random() * events.length)];
+        coins += event.effect;
+        steps.push({
+            from: stationMap.get(route[i]),
+            to: stationMap.get(route[i + 1]),
+            event: event.description,
+            effect: event.effect,
+            coinsAfter: coins,
+        });
+    }
+    return { steps, finalScore: Math.max(0, coins) };
+}
