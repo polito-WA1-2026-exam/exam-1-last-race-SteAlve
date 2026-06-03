@@ -69,3 +69,13 @@ export function executeRoute(stationMap, events, route) {
     }
     return { steps, finalScore: Math.max(0, coins) };
 }
+
+// STATION MAP
+export function buildStationMap(segments) {
+    const map = new Map();
+    for (const seg of segments) {
+        map.set(seg.fromId, seg.fromName);
+        map.set(seg.toId, seg.toName);
+    }
+    return map;
+}
