@@ -82,9 +82,9 @@ async function initDb() {
         "Viale dei Mosaici",   // 7  - Blue + Yellow interchange
         "Torre Cinerea",       // 8  - Green + Yellow interchange
         "Campo dell'Eco",      // 9  - Green + Yellow interchange
-        "Faro del Nord",       // 10 - Red extension
-        "Porto Vecchio",       // 11 - Blue extension
-        "Bosco dei Cervi",     // 12 - Green extension
+        "Faro del Nord",       // 10 - Red
+        "Porto Vecchio",       // 11 - Blue
+        "Bosco dei Cervi",     // 12 - Green
     ];
     for (const name of stations)
         await run(`INSERT INTO station(name) VALUES (?)`, [name]);
