@@ -91,7 +91,7 @@ function PlanningPhase({ game, segments, onSubmit }) {
         </Card>
       </Col>
 
-      <Col md={4}>
+      <Col md={4} className='d-flex flex-column'>
         <Card className='shadow-sm mb-3'>
           <Card.Body>
             <Card.Title><ClockFill className='me-2' />Time left</Card.Title>
@@ -100,9 +100,9 @@ function PlanningPhase({ game, segments, onSubmit }) {
           </Card.Body>
         </Card>
 
-        <Card className='shadow-sm'>
+        <Card className='shadow-sm flex-grow-1' style={{ minHeight: 0 }}>
           <Card.Header className='bg-dark text-white'>Segments</Card.Header>
-          <ListGroup variant='flush' style={{ maxHeight: '350px', overflowY: 'auto' }}>
+          <ListGroup variant='flush' style={{ overflowY: 'auto', height: '100%' }}>
             {segments
               .filter(seg => canAdd(seg))
               .map((seg, i) => (
