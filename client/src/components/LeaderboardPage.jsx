@@ -16,9 +16,9 @@ function LeaderboardPage() {
   }, []);
 
   const medal = (i) => {
-    if (i === 0) return <Award color='gold' size={20} />;
-    if (i === 1) return <Award color='silver' size={20} />;
-    if (i === 2) return <Award color='#cd7f32' size={20} />;
+    if (i === 0) return <Award color='#B8860B' size={20} />;
+    if (i === 1) return <Award color='#607080' size={20} />;
+    if (i === 2) return <Award color='#8B4513' size={20} />;
     return i + 1;
   };
 

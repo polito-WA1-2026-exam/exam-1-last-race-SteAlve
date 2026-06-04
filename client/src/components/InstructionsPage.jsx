@@ -6,33 +6,21 @@ function InstructionsPage() {
   const navigate = useNavigate();
 
   return (
-    <Container fluid>
-      <Row className='mb-4 align-items-center'>
-        <Col>
-          <h1>Last Race</h1>
-          <p className='lead text-muted'>Navigate the underground network and reach your destination before time runs out!</p>
-        </Col>
-        <Col xs='auto'>
-          <Button variant='dark' size='lg' onClick={() => navigate('/login')}>
-            Login to play
-          </Button>
-        </Col>
-      </Row>
-
-      <Row className='g-3'>
+    <Container fluid className='d-flex flex-column justify-content-center' style={{ minHeight: 'calc(100vh - 110px)' }}>
+      <Row className='g-3 mb-4'>
         <Col md={6}>
           <Card className='h-100'>
             <Card.Header className='bg-dark text-white'>How to play</Card.Header>
             <Card.Body>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
-                  <Map className='me-2' /><strong>Setup</strong> — Study the metro map.
+                  <Map className='me-2' /><strong>Setup</strong> — Study the network of tunnels and passages.
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Signpost className='me-2' /><strong>Planning</strong> — Build your route in 90 seconds.
+                  <Signpost className='me-2' /><strong>Planning</strong> — Chart your route in 90 seconds.
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Lightning className='me-2' /><strong>Execution</strong> — Random events gain or lose coins.
+                  <Lightning className='me-2' /><strong>Execution</strong> — Random events along the way gain or lose coins.
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Award className='me-2' /><strong>Result</strong> — Your score is the coins remaining.
@@ -54,6 +42,14 @@ function InstructionsPage() {
               </ListGroup>
             </Card.Body>
           </Card>
+        </Col>
+      </Row>
+
+      <Row className='mt-2 mb-4'>
+        <Col className='text-center'>
+          <Button variant='dark' size='lg' onClick={() => navigate('/login')}>
+            Login to play
+          </Button>
         </Col>
       </Row>
     </Container>

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Row, Col, ListGroup, Badge, Button, ProgressBar, Card, Stack } from 'react-bootstrap';
-import { ArrowRight, ArrowCounterclockwise, SendFill, ClockFill } from 'react-bootstrap-icons';
+import { ArrowRight, ArrowLeftRight, ArrowCounterclockwise, SendFill, ClockFill } from 'react-bootstrap-icons';
 import mapStationsImage from '../assets/map-stations.png';
 
 function PlanningPhase({ game, segments, onSubmit }) {
@@ -42,6 +42,17 @@ function PlanningPhase({ game, segments, onSubmit }) {
   return (
     <Row className='g-3'>
       <Col md={8}>
+        {/* Map floats directly on the wood table */}
+        <div className='text-center mb-3'>
+          <img
+            src={mapStationsImage}
+            alt='Station map'
+            className='img-fluid planning-map'
+            style={{ maxWidth: '100%' }}
+          />
+        </div>
+
+        {/* Route card below */}
         <Card className='shadow-sm'>
           <Card.Header className='bg-dark text-white'>
             <Stack direction='horizontal' gap={3}>
@@ -51,13 +62,6 @@ function PlanningPhase({ game, segments, onSubmit }) {
             </Stack>
           </Card.Header>
           <Card.Body>
-            <img
-              src={mapStationsImage}
-              alt='Station map'
-              className='img-fluid mb-3'
-              style={{ maxWidth: '100%' }}
-            />
-
             <Card.Title>Your route</Card.Title>
             <div className='mb-3 p-2 bg-light rounded' style={{ minHeight: '40px' }}>
               {route.length === 0
@@ -111,7 +115,7 @@ function PlanningPhase({ game, segments, onSubmit }) {
                   action
                   onClick={() => addSegment(seg)}
                 >
-                  {seg.fromName} <ArrowRight className='mx-1' /> {seg.toName}
+                  {seg.fromName} <ArrowLeftRight className='mx-1' /> {seg.toName}
                 </ListGroup.Item>
               ))}
           </ListGroup>

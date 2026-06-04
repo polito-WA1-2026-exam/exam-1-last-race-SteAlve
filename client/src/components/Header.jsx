@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { Navbar, Container, Nav, Button, Badge } from 'react-bootstrap';
-import { BusFront, Trophy, BoxArrowRight } from 'react-bootstrap-icons';
+import { Trophy, BoxArrowRight } from 'react-bootstrap-icons';
 import { Link, useNavigate } from 'react-router';
 import UserContext from '../contexts/UserContext.js';
 
@@ -11,7 +11,7 @@ function Header() {
   return (
     <Navbar bg='dark' variant='dark' className='mb-4'>
       <Container fluid>
-        <Navbar.Brand as={Link} to='/'><BusFront className='me-2' />Last Race</Navbar.Brand>
+        <Navbar.Brand as={Link} to='/'><span className='me-2'>♞</span>Last Race</Navbar.Brand>
         <Nav className='ms-auto align-items-center gap-2'>
           {user?.id ? (
             <>
