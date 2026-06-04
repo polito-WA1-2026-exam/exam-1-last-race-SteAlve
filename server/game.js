@@ -42,26 +42,39 @@ export function pickStartEnd(graph) {
 }
 
 // VALIDATE ROUTE
+// route is an array of [fromId, toId] pairs
 export function validateRoute(graph, route, startId, endId) {
-    if (!Array.isArray(route) || route.length < 2) return false;
-    if (route[0] !== startId) return false;
-    if (route[route.length - 1] !== endId) return false;
-    for (let i = 0; i < route.length - 1; i++) {
-        if (!graph.get(route[i])?.has(route[i + 1])) return false;
+    if (!Array.isArray(route) || route.length < 1) return false;
+
+    const [a0, b0] = route[0];
+    if (a0 !== startId && b0 !== startId) return false;
+    if (!graph.get(a0)?.has(b0)) return false;
+
+    const path = [startId, a0 === startId ? b0 : a0];
+
+    for (let i = 1; i < route.length; i++) {
+        const [c, d] = route[i];
+        if (!graph.get(c)?.has(d)) return false;
+        const last = path[path.length - 1];
+        if      (last === c) path.push(d);
+        else if (last === d) path.push(c);
+        else return false;
     }
-    return true;
+
+    return path[path.length - 1] === endId;
 }
 
 // EXECUTE ROUTE
+// route is an array of [fromId, toId] pairs
 export function executeRoute(stationMap, events, route) {
     let coins = 20;
     const steps = [];
-    for (let i = 0; i < route.length - 1; i++) {
+    for (const [fromId, toId] of route) {
         const event = events[Math.floor(Math.random() * events.length)];
         coins += event.effect;
         steps.push({
-            from: stationMap.get(route[i]),
-            to: stationMap.get(route[i + 1]),
+            from: stationMap.get(fromId),
+            to: stationMap.get(toId),
             event: event.description,
             effect: event.effect,
             coinsAfter: coins,
