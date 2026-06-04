@@ -38,7 +38,7 @@ function App() {
 
   return (
     <UserContext.Provider value={user}>
-      <Container>
+      <Container fluid className='px-0'>
         <Routes>
           <Route path='/' element={<MainLayout doLogin={doLogin} />}>
             <Route index element={<InstructionsView />} />
