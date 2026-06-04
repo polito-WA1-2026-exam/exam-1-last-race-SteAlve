@@ -82,8 +82,8 @@ function PlanningPhase({ game, segments, onSubmit }) {
                 <SendFill className='me-2' />Submit route
               </Button>
               {route.length > 0 &&
-                <Button variant='outline-secondary' onClick={() => setRoute([])}>
-                  <ArrowCounterclockwise className='me-1' />Reset
+                <Button variant='outline-secondary' onClick={() => setRoute(r => r.slice(0, -1))}>
+                  <ArrowCounterclockwise className='me-1' />Undo
                 </Button>
               }
             </Stack>

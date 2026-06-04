@@ -3,9 +3,11 @@
 
 ## React Client Application Routes
 
-- Route `/`: page content and purpose
-- Route `/something/:param`: page content and purpose, param specification
-- ...
+- Route `/`: public homepage showing game instructions and login button. Redirects to `/game` if already authenticated.
+- Route `/login`: login form with email and password. Redirects to `/game` on success.
+- Route `/logout`: triggers server-side session deletion, resets user state and redirects to `/`. Shows a spinner while waiting.
+- Route `/game`: main game page (auth required). Manages the four game phases in sequence: setup, planning, execution, result.
+- Route `/leaderboard`: global leaderboard showing each user's best score (auth required).
 
 ## API Server
 
@@ -49,9 +51,13 @@
 
 ## Main React Components
 
-- `ListOfSomething` (in `List.js`): component purpose and main functionality
-- `GreatButton` (in `GreatButton.js`): component purpose and main functionality
-- ...
+- `InstructionsPage` (in `InstructionsPage.jsx`): public landing page with game rules and a login button. Only visible to unauthenticated users.
+- `GamePage` (in `GamePage.jsx`): orchestrates the four game phases (setup → planning → execution → result) by managing phase state and invoking the relevant API calls between transitions.
+- `SetupPhase` (in `SetupPhase.jsx`): shows the full network map and a start button to begin the planning phase.
+- `PlanningPhase` (in `PlanningPhase.jsx`): 90-second timed phase where the player builds a route by selecting segments from a list. Manages the route as an array of `[fromId, toId]` pairs and auto-submits on timeout.
+- `ExecutionPhase` (in `ExecutionPhase.jsx`): shows the validated route step by step, displaying the random event and coin balance for each segment. The player advances manually.
+- `ResultPhase` (in `ResultPhase.jsx`): displays the final score and a button to start a new game.
+- `LeaderboardPage` (in `LeaderboardPage.jsx`): fetches and displays the global ranking with each user's best score.
 
 (only _main_ components, minor ones may be skipped)
 
