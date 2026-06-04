@@ -9,7 +9,7 @@ function Header() {
   const navigate = useNavigate();
 
   return (
-    <Navbar bg='dark' variant='dark' className='mb-4'>
+    <Navbar bg='dark' variant='dark' fixed='top'>
       <Container fluid>
         <Navbar.Brand as={Link} to='/'><span className='me-2'>♞</span>Last Race</Navbar.Brand>
         <Nav className='ms-auto align-items-center gap-2'>

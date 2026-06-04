@@ -12,7 +12,7 @@ function SetupPhase({ onStart }) {
         className='img-fluid mb-4 setup-map'
       />
       <Button variant='dark' size='lg' onClick={onStart}>
-        <PlayCircleFill className='me-2' />I'm ready — Start planning!
+        <PlayCircleFill className='me-2' />Start planning!
       </Button>
     </div>
   );

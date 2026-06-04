@@ -9,7 +9,7 @@ function ExecutionPhase({ result, onDone }) {
   const effectVariant = step.effect > 0 ? 'success' : step.effect < 0 ? 'danger' : 'secondary';
 
   return (
-    <Container fluid>
+    <Container fluid className='d-flex flex-column justify-content-center' style={{ minHeight: 'calc(100vh - 110px)' }}>
       <Card className='shadow-sm'>
         <Card.Header className='bg-dark text-white'>
           <Stack direction='horizontal' className='justify-content-between'>

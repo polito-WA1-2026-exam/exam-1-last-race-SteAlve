@@ -40,6 +40,7 @@ body {
   background-repeat: no-repeat;
   background-color: #1A0E05;
   min-height: 100vh;
+  padding-top: 62px;
   padding-bottom: 48px;
 }
 
@@ -272,8 +273,20 @@ p {
   color: var(--amber) !important;
 }
 
+/* ── Planning phase wrapper ── */
+.planning-wrapper {
+  min-height: calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
 /* ── Planning map — floating on wood ── */
 .planning-map {
+  width: 100%;
+  max-height: calc(100vh - 420px);
+  object-fit: contain;
   filter: drop-shadow(3px 5px 16px rgba(0, 0, 0, 0.65))
           drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
   border-radius: 3px;
