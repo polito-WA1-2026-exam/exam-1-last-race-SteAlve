@@ -6,7 +6,25 @@ import mapStationsImage from '../assets/map-stations.png';
 function PlanningPhase({ game, segments, onSubmit }) {
   const [route, setRoute] = useState([]);
   const [timeLeft, setTimeLeft] = useState(90);
+  const [submitting, setSubmitting] = useState(false);
   const startTime = useRef(Date.now());
+
+  // Keep a ref in sync with the latest route so the timer callback
+  // (registered once) always submits the route built so far, not the
+  // empty array captured in its initial closure.
+  const routeRef = useRef(route);
+  routeRef.current = route;
+
+  // Submit guard: prevents a double submit (e.g. manual click + timer
+  // expiry, or a rapid double click). Uses a ref so the timer closure
+  // reads the current value, not the stale initial one.
+  const submittingRef = useRef(false);
+  const submit = (r) => {
+    if (submittingRef.current) return;
+    submittingRef.current = true;
+    setSubmitting(true);
+    onSubmit(r);
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -15,7 +33,7 @@ function PlanningPhase({ game, segments, onSubmit }) {
       if (remaining <= 0) {
         clearInterval(timer);
         setTimeLeft(0);
-        onSubmit(route);
+        submit(routeRef.current);
       } else {
         setTimeLeft(remaining);
       }
@@ -67,7 +85,7 @@ function PlanningPhase({ game, segments, onSubmit }) {
                 {route.length === 0
                   ? <span className='text-muted'>No segments selected yet</span>
                   : route.map(([fromId, toId], i) => (
-                    <span key={i}>
+                    <span key={`${fromId}-${toId}`}>
                       {i > 0 && <span className='mx-2 text-muted'>|</span>}
                       <Badge bg='secondary'>{getStationName(fromId)}</Badge>
                       <ArrowRight className='mx-1 text-muted' />
@@ -80,13 +98,13 @@ function PlanningPhase({ game, segments, onSubmit }) {
               <Stack direction='horizontal' gap={2}>
                 <Button
                   variant='dark'
-                  disabled={route.length < 1}
-                  onClick={() => onSubmit(route)}
+                  disabled={route.length < 1 || submitting}
+                  onClick={() => submit(route)}
                 >
                   <SendFill className='me-2' />Submit route
                 </Button>
                 {route.length > 0 &&
-                  <Button variant='outline-secondary' onClick={() => setRoute(r => r.slice(0, -1))}>
+                  <Button variant='outline-secondary' disabled={submitting} onClick={() => setRoute(r => r.slice(0, -1))}>
                     <ArrowCounterclockwise className='me-1' />Undo
                   </Button>
                 }
@@ -109,9 +127,9 @@ function PlanningPhase({ game, segments, onSubmit }) {
             <ListGroup variant='flush' style={{ overflowY: 'auto', height: '100%' }}>
               {segments
                 .filter(seg => canAdd(seg))
-                .map((seg, i) => (
+                .map((seg) => (
                   <ListGroup.Item
-                    key={i}
+                    key={`${seg.fromId}-${seg.toId}`}
                     action
                     onClick={() => addSegment(seg)}
                   >

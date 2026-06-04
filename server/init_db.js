@@ -138,7 +138,7 @@ async function initDb() {
             [email, name, hash, salt]);
     }
 
-    // games (Mario e Giulia have already played)
+    // games (Aldric and Mira have already played)
     const games = [
         [1, 10, 12, 22],
         [1, 11, 3, 8],

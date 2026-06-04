@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Container, Badge, Card, ProgressBar, Stack } from 'react-bootstrap';
-import { ArrowRight, ChevronRight, CheckCircleFill, XCircleFill } from 'react-bootstrap-icons';
+import { ArrowRight, ChevronRight} from 'react-bootstrap-icons';
 
 function ExecutionPhase({ result, onDone }) {
   const [currentStep, setCurrentStep] = useState(0);

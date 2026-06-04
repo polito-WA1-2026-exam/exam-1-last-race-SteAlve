@@ -46,15 +46,23 @@ export function pickStartEnd(graph) {
 export function validateRoute(graph, route, startId, endId) {
     if (!Array.isArray(route) || route.length < 1) return false;
 
+    // Track used segments (normalized min-max) no segment may be used twice
+    const used = new Set();
+    const segKey = (a, b) => `${Math.min(a, b)}-${Math.max(a, b)}`;
+
     const [a0, b0] = route[0];
     if (a0 !== startId && b0 !== startId) return false;
     if (!graph.get(a0)?.has(b0)) return false;
+    used.add(segKey(a0, b0));
 
     const path = [startId, a0 === startId ? b0 : a0];
 
     for (let i = 1; i < route.length; i++) {
         const [c, d] = route[i];
         if (!graph.get(c)?.has(d)) return false;
+        const key = segKey(c, d);
+        if (used.has(key)) return false;   // segment reused
+        used.add(key);
         const last = path[path.length - 1];
         if      (last === c) path.push(d);
         else if (last === d) path.push(c);

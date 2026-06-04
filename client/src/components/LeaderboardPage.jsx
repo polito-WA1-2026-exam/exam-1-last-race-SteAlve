@@ -49,7 +49,7 @@ function LeaderboardPage() {
               </thead>
               <tbody>
                 {rankings.map((r, i) => (
-                  <tr key={i}>
+                  <tr key={r.name}>
                     <td>{medal(i)}</td>
                     <td>{r.name}</td>
                     <td><Badge bg='dark'>{r.bestScore} coins</Badge></td>
