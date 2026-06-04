@@ -133,7 +133,8 @@ app.post("/api/games/:id/route", isLoggedIn, check("route").isArray({ min: 1 }),
       return res.json({ valid: false, finalScore: 0 });
     }
 
-    const { steps, finalScore } = executeRoute(segments, events, route);
+    const stationMap = buildStationMap(segments);
+    const { steps, finalScore } = executeRoute(stationMap, events, route);
     await saveGameScore(game.id, finalScore);
     res.json({ valid: true, steps, finalScore });
   } catch {
