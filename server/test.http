@@ -1,0 +1,56 @@
+# Good login
+
+POST http://localhost:3001/api/sessions
+content-type: application/json
+
+{
+  "username": "mario.rossi@lastrace.it",
+  "password": "password"
+}
+
+###
+
+# Bad login - wrong password
+
+POST http://localhost:3001/api/sessions
+content-type: application/json
+
+{
+  "username": "mario.rossi@lastrace.it",
+  "password": "wrongpassword"
+}
+
+###
+
+# Bad login - user does not exist
+
+POST http://localhost:3001/api/sessions
+content-type: application/json
+
+{
+  "username": "notexist@lastrace.it",
+  "password": "password"
+}
+
+###
+
+DELETE http://localhost:3001/api/sessions/current
+
+###
+
+# Segments
+
+GET http://localhost:3001/api/segments
+
+###
+
+# Start new game
+
+POST http://localhost:3001/api/games
+
+
+###
+
+# Leaderboard - logged in
+
+GET http://localhost:3001/api/leaderboard
