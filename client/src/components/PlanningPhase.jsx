@@ -7,7 +7,7 @@ function PlanningPhase({ game, segments, onSubmit }) {
   const [route, setRoute] = useState([]);
   const [timeLeft, setTimeLeft] = useState(90);
   const [submitting, setSubmitting] = useState(false);
-  const startTime = useRef(Date.now());
+  const [startTime] = useState(() => Date.now());
 
   // Keep a ref in sync with the latest route so the timer callback
   // (registered once) always submits the route built so far, not the
@@ -28,7 +28,7 @@ function PlanningPhase({ game, segments, onSubmit }) {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      const elapsed = Math.floor((Date.now() - startTime.current) / 1000);
+      const elapsed = Math.floor((Date.now() - startTime) / 1000);
       const remaining = 90 - elapsed;
       if (remaining <= 0) {
         clearInterval(timer);
@@ -88,7 +88,7 @@ function PlanningPhase({ game, segments, onSubmit }) {
                     <span key={`${fromId}-${toId}`}>
                       {i > 0 && <span className='mx-2 text-muted'>|</span>}
                       <Badge bg='secondary'>{getStationName(fromId)}</Badge>
-                      <ArrowRight className='mx-1 text-muted' />
+                      <ArrowLeftRight className='mx-1 text-muted' />
                       <Badge bg='secondary'>{getStationName(toId)}</Badge>
                     </span>
                   ))
