@@ -81,7 +81,7 @@ async function initDb() {
         "Friar's Borough",     // 6  - Blue only
         "Usurer's Tower",      // 7  - Blue + Yellow interchange
         "The Fallen Bastion",  // 8  - Green + Yellow interchange
-        "Martyrs' Field",      // 9  - Green + Yellow interchange
+        "Martyrs' Field",      // 9  - Green only
         "Northpyre Gate",      // 10 - Red only
         "The Black Raven Inn", // 11 - Blue only
         "Outcast Forest",      // 12 - Green only
@@ -102,8 +102,8 @@ async function initDb() {
         [2, 1, 0], [2, 5, 1], [2, 6, 2], [2, 7, 3], [2, 11, 4],
         // Green Line:  Eastgate Crossing → Witch's Well → The Fallen Bastion → Martyrs' Field → Outcast Forest
         [3, 2, 0], [3, 5, 1], [3, 8, 2], [3, 9, 3], [3, 12, 4],
-        // Yellow Line: Gallows Square → The Fallen Bastion → Usurer's Tower → Martyrs' Field
-        [4, 4, 0], [4, 8, 1], [4, 7, 2], [4, 9, 3],
+        // Yellow Line: Gallows Square → The Fallen Bastion → Usurer's Tower
+        [4, 4, 0], [4, 8, 1], [4, 7, 2],
     ];
     for (const [lineId, stationId, position] of lineStations)
         await run(`INSERT INTO line_station(line_id, station_id, position) VALUES (?,?,?)`,
