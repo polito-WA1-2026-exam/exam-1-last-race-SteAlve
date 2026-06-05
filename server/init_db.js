@@ -95,7 +95,6 @@ async function initDb() {
         await run(`INSERT INTO line(name) VALUES (?)`, [name]);
 
     // line_station [line_id, station_id, position]
-    // Rule: segments (adjacent station pairs) must be unique per line — only stations may be shared
     const lineStations = [
         // Red Line:    The Iron Keep → Eastgate Crossing → Brigand's Alley → Gallows Square → Northpyre Gate
         [1, 1, 0], [1, 2, 1], [1, 3, 2], [1, 4, 3], [1, 10, 4],
@@ -131,6 +130,7 @@ async function initDb() {
         ["aldric@lastrace.it", "Aldric of Ironkeep", "password"],
         ["mira@lastrace.it", "Mira Blackthorn", "password"],
         ["godfrey@lastrace.it", "Godfrey the Bold", "password"],
+        ["stefano@lastrace.it", "Stefano Alverino", "password"],
     ];
     for (const [email, name, password] of users) {
         const { hash, salt } = await hashPassword(password);
