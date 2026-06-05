@@ -46,7 +46,7 @@ export function pickStartEnd(graph) {
 export function validateRoute(graph, route, startId, endId) {
     if (!Array.isArray(route) || route.length < 1) return false;
 
-    // Track used segments (normalized min-max) no segment may be used twice
+    // Track used segments no segment may be used twice
     const used = new Set();
     const segKey = (a, b) => `${Math.min(a, b)}-${Math.max(a, b)}`;
 
