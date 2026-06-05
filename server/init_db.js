@@ -117,7 +117,6 @@ async function initDb() {
         ["A merchant's cart carries you past the next gate", 3],
         ["You stumble upon a forgotten treasure in the tunnel", 4],
         ["A surly guard demands a toll at the gate", -1],
-        ["You trip on loose cobblestones in the dark", -2],
         ["The tunnel floods ankle-deep after the rain", -2],
         ["A pickpocket relieves you of some coin at the crossing", -3],
         ["The torchbearer falls asleep, you wander in darkness", -4],
