@@ -23,7 +23,7 @@ function LeaderboardPage() {
   };
 
   return (
-    <Container fluid>
+    <Container fluid className='pt-4'>
       <Card className='shadow-sm'>
         <Card.Header className='bg-dark text-white'>
           <h4 className='mb-0'><Trophy className='me-2' />Leaderboard</h4>

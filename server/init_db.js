@@ -111,7 +111,7 @@ async function initDb() {
 
     // events
     const events = [
-        ["The passage is clear — not a soul in sight", 0],
+        ["The passage is clear, not a soul in sight", 0],
         ["A bard's cheerful tune quickens your step", 1],
         ["A friendly friar reveals a hidden shortcut", 2],
         ["A merchant's cart carries you past the next gate", 3],
@@ -120,17 +120,17 @@ async function initDb() {
         ["You trip on loose cobblestones in the dark", -2],
         ["The tunnel floods ankle-deep after the rain", -2],
         ["A pickpocket relieves you of some coin at the crossing", -3],
-        ["The torchbearer falls asleep — you wander in darkness", -4],
+        ["The torchbearer falls asleep, you wander in darkness", -4],
     ];
     for (const [description, effect] of events)
         await run(`INSERT INTO event(description, effect) VALUES (?,?)`, [description, effect]);
 
     // users
     const users = [
-        ["aldric@lastrace.it", "Aldric of Ironkeep", "password"],
-        ["mira@lastrace.it", "Mira Blackthorn", "password"],
-        ["godfrey@lastrace.it", "Godfrey the Bold", "password"],
-        ["stefano@lastrace.it", "Stefano Alverino", "password"],
+        ["aldric@lastrace.it", "Aldric of Ironkeep", "password1"],
+        ["mira@lastrace.it", "Mira Blackthorn", "password2"],
+        ["godfrey@lastrace.it", "Godfrey the Bold", "password3"],
+        ["stefano@lastrace.it", "Stefano Alverino", "password4"],
     ];
     for (const [email, name, password] of users) {
         const { hash, salt } = await hashPassword(password);
