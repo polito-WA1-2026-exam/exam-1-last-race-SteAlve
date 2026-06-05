@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Table, Container, Alert, Spinner, Card, Badge } from 'react-bootstrap';
+import { Table, Container, Alert, Spinner, Card, Badge, Row, Col, Button } from 'react-bootstrap';
 import { Trophy, Award } from 'react-bootstrap-icons';
 import { getLeaderboard } from '../api/api.js';
+import { useNavigate } from 'react-router';
 
 function LeaderboardPage() {
+
+  const navigate = useNavigate();
   const [rankings, setRankings] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
@@ -16,14 +19,14 @@ function LeaderboardPage() {
   }, []);
 
   const medal = (i) => {
-    if (i === 0) return <Award color='gold' size={20} />;
-    if (i === 1) return <Award color='silver' size={20} />;
-    if (i === 2) return <Award color='#cd7f32' size={20} />;
+    if (i === 0) return <Award color='#B8860B' size={20} />;
+    if (i === 1) return <Award color='#607080' size={20} />;
+    if (i === 2) return <Award color='#8B4513' size={20} />;
     return i + 1;
   };
 
   return (
-    <Container fluid>
+    <Container fluid className='pt-4'>
       <Card className='shadow-sm'>
         <Card.Header className='bg-dark text-white'>
           <h4 className='mb-0'><Trophy className='me-2' />Leaderboard</h4>
@@ -49,7 +52,7 @@ function LeaderboardPage() {
               </thead>
               <tbody>
                 {rankings.map((r, i) => (
-                  <tr key={i}>
+                  <tr key={r.name}>
                     <td>{medal(i)}</td>
                     <td>{r.name}</td>
                     <td><Badge bg='dark'>{r.bestScore} coins</Badge></td>
@@ -60,6 +63,14 @@ function LeaderboardPage() {
           )}
         </Card.Body>
       </Card>
+
+      <Row className='mt-2 mb-4'>
+        <Col className='text-center'>
+          <Button variant='dark' size='lg' onClick={() => navigate('/')}>
+            Return to home
+          </Button>
+        </Col>
+      </Row>
     </Container>
   );
 }

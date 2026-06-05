@@ -73,18 +73,18 @@ async function initDb() {
     )`);
 
     const stations = [
-        "Centrale",            // 1  - Red + Blue interchange
-        "Porta Velaria",       // 2  - Red + Green interchange
-        "Crocevia del Falco",  // 3  - Red only
-        "Piazza delle Lanterne", // 4 - Red + Yellow interchange
-        "Fontana Oscura",      // 5  - Blue + Green interchange
-        "Borgo Sereno",        // 6  - Blue only
-        "Viale dei Mosaici",   // 7  - Blue + Yellow interchange
-        "Torre Cinerea",       // 8  - Green + Yellow interchange
-        "Campo dell'Eco",      // 9  - Green + Yellow interchange
-        "Faro del Nord",       // 10 - Red
-        "Porto Vecchio",       // 11 - Blue
-        "Bosco dei Cervi",     // 12 - Green
+        "The Iron Keep",       // 1  - Red + Blue interchange
+        "Eastgate Crossing",   // 2  - Red + Green interchange
+        "Brigand's Alley",     // 3  - Red only
+        "Gallows Square",      // 4  - Red + Yellow interchange
+        "Witch's Well",        // 5  - Blue + Green interchange
+        "Friar's Borough",     // 6  - Blue only
+        "Usurer's Tower",      // 7  - Blue + Yellow interchange
+        "The Fallen Bastion",  // 8  - Green + Yellow interchange
+        "Martyrs' Field",      // 9  - Green + Yellow interchange
+        "Northpyre Gate",      // 10 - Red only
+        "The Black Raven Inn", // 11 - Blue only
+        "Outcast Forest",      // 12 - Green only
     ];
     for (const name of stations)
         await run(`INSERT INTO station(name) VALUES (?)`, [name]);
@@ -96,13 +96,13 @@ async function initDb() {
 
     // line_station [line_id, station_id, position]
     const lineStations = [
-        // Red Line: Centrale - Porta Velaria - Crocevia del Falco - Piazza delle Lanterne - Faro del Nord
+        // Red Line:    The Iron Keep → Eastgate Crossing → Brigand's Alley → Gallows Square → Northpyre Gate
         [1, 1, 0], [1, 2, 1], [1, 3, 2], [1, 4, 3], [1, 10, 4],
-        // Blue Line: Centrale - Fontana Oscura - Borgo Sereno - Viale dei Mosaici - Porto Vecchio
+        // Blue Line:   The Iron Keep → Witch's Well → Friar's Borough → Usurer's Tower → The Black Raven Inn
         [2, 1, 0], [2, 5, 1], [2, 6, 2], [2, 7, 3], [2, 11, 4],
-        // Green Line: Porta Velaria - Fontana Oscura - Torre Cinerea - Campo dell'Eco - Bosco dei Cervi
+        // Green Line:  Eastgate Crossing → Witch's Well → The Fallen Bastion → Martyrs' Field → Outcast Forest
         [3, 2, 0], [3, 5, 1], [3, 8, 2], [3, 9, 3], [3, 12, 4],
-        // Yellow Line: Piazza delle Lanterne - Torre Cinerea - Viale dei Mosaici - Campo dell'Eco
+        // Yellow Line: Gallows Square → The Fallen Bastion → Usurer's Tower → Martyrs' Field
         [4, 4, 0], [4, 8, 1], [4, 7, 2], [4, 9, 3],
     ];
     for (const [lineId, stationId, position] of lineStations)
@@ -111,25 +111,26 @@ async function initDb() {
 
     // events
     const events = [
-        ["Quiet journey, nothing to report", 0],
-        ["The AC is finally working, you feel refreshed", 2],
-        ["You find a coin forgotten on the seat", 1],
-        ["A kind stranger shares their snacks with you", 3],
-        ["Train arrives just as you step on the platform", 4],
-        ["You sit on someone's forgotten sandwich", -1],
-        ["Train doors close on your backpack", -2],
-        ["A tourist mistakes you for a tour guide", -2],
-        ["Someone's pizza slice drips on your shoe", -3],
-        ["Train breaks down, you wait in the dark", -4],
+        ["The passage is clear, not a soul in sight", 0],
+        ["A bard's cheerful tune quickens your step", 1],
+        ["A friendly friar reveals a hidden shortcut", 2],
+        ["A merchant's cart carries you past the next gate", 3],
+        ["You stumble upon a forgotten treasure in the tunnel", 4],
+        ["A surly guard demands a toll at the gate", -1],
+        ["You trip on loose cobblestones in the dark", -2],
+        ["The tunnel floods ankle-deep after the rain", -2],
+        ["A pickpocket relieves you of some coin at the crossing", -3],
+        ["The torchbearer falls asleep, you wander in darkness", -4],
     ];
     for (const [description, effect] of events)
         await run(`INSERT INTO event(description, effect) VALUES (?,?)`, [description, effect]);
 
     // users
     const users = [
-        ["mario.rossi@lastrace.it", "Mario Rossi", "password"],
-        ["giulia.bianchi@lastrace.it", "Giulia Bianchi", "password"],
-        ["luca.verde@lastrace.it", "Luca Verde", "password"],
+        ["aldric@lastrace.it", "Aldric of Ironkeep", "password1"],
+        ["mira@lastrace.it", "Mira Blackthorn", "password2"],
+        ["godfrey@lastrace.it", "Godfrey the Bold", "password3"],
+        ["stefano@lastrace.it", "Stefano Alverino", "password4"],
     ];
     for (const [email, name, password] of users) {
         const { hash, salt } = await hashPassword(password);
@@ -137,7 +138,7 @@ async function initDb() {
             [email, name, hash, salt]);
     }
 
-    // games (Mario e Giulia have already played)
+    // games (Aldric and Mira have already played)
     const games = [
         [1, 10, 12, 22],
         [1, 11, 3, 8],

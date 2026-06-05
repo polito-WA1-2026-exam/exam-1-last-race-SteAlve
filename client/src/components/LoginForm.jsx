@@ -20,7 +20,8 @@ function LoginForm(props) {
   };
 
   return (
-    <Container style={{ maxWidth: '420px' }}>
+    <Container fluid className='d-flex flex-column align-items-center justify-content-center' style={{ minHeight: 'calc(100vh - 110px)' }}>
+      <div style={{ width: '100%', maxWidth: '420px' }}>
       <Card className='shadow-sm'>
         <Card.Header as='h4' className='bg-dark text-white'>Login</Card.Header>
         <Card.Body>
@@ -52,6 +53,7 @@ function LoginForm(props) {
           </Form>
         </Card.Body>
       </Card>
+      </div>
     </Container>
   );
 }

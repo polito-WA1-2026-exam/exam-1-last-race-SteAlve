@@ -112,7 +112,7 @@ app.post("/api/games", isLoggedIn, async (req, res) => {
 });
 
 // POST /api/games/:id/route
-app.post("/api/games/:id/route", isLoggedIn, check("route").isArray({ min: 1 }), async (req, res) => {
+app.post("/api/games/:id/route", isLoggedIn, check("route").isArray(), async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) return res.status(422).json({ errors: errors.array() });
 
@@ -122,10 +122,16 @@ app.post("/api/games/:id/route", isLoggedIn, check("route").isArray({ min: 1 }),
     if (game.user_id !== req.user.id) return res.status(403).json({ error: "Forbidden." });
     if (game.score !== null) return res.status(409).json({ error: "Game already completed." });
 
+    const route = req.body.route;
+
+    if (route.length === 0) {
+      await saveGameScore(game.id, 0);
+      return res.json({ valid: false, finalScore: 0 });
+    }
+
     const segments = await getSegments();
     const events = await getEvents();
     const graph = buildGraph(segments);
-    const route = req.body.route;
     const valid = validateRoute(graph, route, game.start_station_id, game.end_station_id);
 
     if (!valid) {
