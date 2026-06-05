@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Table, Container, Alert, Spinner, Card, Badge } from 'react-bootstrap';
+import { Table, Container, Alert, Spinner, Card, Badge, Row, Col, Button } from 'react-bootstrap';
 import { Trophy, Award } from 'react-bootstrap-icons';
 import { getLeaderboard } from '../api/api.js';
+import { useNavigate } from 'react-router';
 
 function LeaderboardPage() {
+
+  const navigate = useNavigate();
   const [rankings, setRankings] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
@@ -60,6 +63,14 @@ function LeaderboardPage() {
           )}
         </Card.Body>
       </Card>
+
+      <Row className='mt-2 mb-4'>
+        <Col className='text-center'>
+          <Button variant='dark' size='lg' onClick={() => navigate('/')}>
+            Return to home
+          </Button>
+        </Col>
+      </Row>
     </Container>
   );
 }

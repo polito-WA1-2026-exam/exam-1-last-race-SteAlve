@@ -14,16 +14,16 @@ function InstructionsPage() {
             <Card.Body>
               <ListGroup variant='flush'>
                 <ListGroup.Item>
-                  <Map className='me-2' /><strong>Setup</strong> — Study the network of tunnels and passages.
+                  <Map className='me-2' /><strong>Setup</strong>: Study the network of tunnels and passages.
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Signpost className='me-2' /><strong>Planning</strong> — Chart your route in 90 seconds.
+                  <Signpost className='me-2' /><strong>Planning</strong>: Chart your route in 90 seconds.
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Lightning className='me-2' /><strong>Execution</strong> — Random events along the way gain or lose coins.
+                  <Lightning className='me-2' /><strong>Execution</strong>: Random events along the way gain or lose coins.
                 </ListGroup.Item>
                 <ListGroup.Item>
-                  <Award className='me-2' /><strong>Result</strong> — Your score is the coins remaining.
+                  <Award className='me-2' /><strong>Result</strong>: Your score is the coins remaining.
                 </ListGroup.Item>
               </ListGroup>
             </Card.Body>
