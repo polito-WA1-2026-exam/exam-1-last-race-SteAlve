@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Container, Badge, Card, ProgressBar, Stack } from 'react-bootstrap';
-import { ArrowRight, ChevronRight, CheckCircleFill, XCircleFill } from 'react-bootstrap-icons';
+import { ArrowRight, ChevronRight} from 'react-bootstrap-icons';
 
 function ExecutionPhase({ result, onDone }) {
   const [currentStep, setCurrentStep] = useState(0);
@@ -9,7 +9,7 @@ function ExecutionPhase({ result, onDone }) {
   const effectVariant = step.effect > 0 ? 'success' : step.effect < 0 ? 'danger' : 'secondary';
 
   return (
-    <Container fluid>
+    <Container fluid className='d-flex flex-column justify-content-center' style={{ minHeight: 'calc(100vh - 110px)' }}>
       <Card className='shadow-sm'>
         <Card.Header className='bg-dark text-white'>
           <Stack direction='horizontal' className='justify-content-between'>

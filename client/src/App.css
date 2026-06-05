@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap');
+
+/* ══════════════════════════════════════════
+   LAST RACE — Medieval Candlelit Table Theme
+   ══════════════════════════════════════════ */
+
+:root {
+  --parchment:      #F5E8C8;
+  --parchment-dark: #E8D4A8;
+  --ink:            #1A0A02;
+  --ink-soft:       #3D1F08;
+  --amber:          #C4780A;
+  --amber-light:    #E8A030;
+  --wood-dark:      #1A0E05;
+  --wood-mid:       #5C3010;
+  --muted-on-wood:  #D4B880;   /* muted text ON dark wood  */
+  --muted-on-card:  #6B4020;   /* muted text ON parchment  */
+  --border-gold:    #B8902A;
+
+  /* Bootstrap overrides */
+  --bs-dark-rgb:         26, 14, 5;
+  --bs-body-bg:          #2A1608;
+  --bs-body-color:       #1A0A02;
+  --bs-body-font-family: 'Lora', Georgia, serif;
+  --bs-card-bg:          rgba(245, 232, 200, 0.95);
+  --bs-border-color:     #B8902A;
+  --bs-border-radius:    2px;
+  --bs-border-radius-lg: 3px;
+  --bs-secondary-color:  #6B4020;
+  --bs-link-color:       #8B4A1A;
+  --bs-link-hover-color: #C4780A;
+}
+
+/* ── Background ── */
+body {
+  background-image: url('./assets/wood-bg.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #1A0E05;
+  min-height: 100vh;
+  padding-top: 62px;
+  padding-bottom: 48px;
+}
+
+/* ══════════════════════════════════
+   TYPOGRAPHY
+   Default = on dark wood → LIGHT
+   Override inside card → DARK
+   ══════════════════════════════════ */
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--parchment);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* Headings inside card body → dark ink on parchment */
+.card-body h1, .card-body h2, .card-body h3,
+.card-body h4, .card-body h5,
+.card-title {
+  color: var(--ink);
+  text-shadow: none;
+}
+
+/* text-muted: two contexts */
+.text-muted {
+  color: var(--muted-on-wood) !important;   /* default: on wood */
+}
+.card .text-muted,
+.card-body .text-muted {
+  color: var(--muted-on-card) !important;   /* inside card: on parchment */
+}
+
+/* Paragraph default on wood */
+p {
+  color: var(--parchment);
+}
+.card p, .card-body p {
+  color: var(--ink-soft);
+}
+
+/* text-warning: Bootstrap yellow is invisible on parchment */
+.text-warning {
+  color: #8B5E00 !important;
+}
+
+/* ── Navbar ── */
+.navbar.bg-dark {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 7, 1, 0.97) 0%,
+    rgba(30, 14, 3, 0.97) 100%
+  ) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 2px solid var(--border-gold);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7),
+              0 1px 0 rgba(196, 120, 10, 0.3);
+}
+
+.navbar-brand {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.45rem;
+  letter-spacing: 0.6px;
+  color: var(--parchment) !important;
+  text-shadow: 0 0 12px rgba(196, 120, 10, 0.5),
+               0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.navbar .nav-link {
+  color: rgba(245, 232, 200, 0.80) !important;
+  transition: color 0.2s;
+}
+.navbar .nav-link:hover {
+  color: var(--amber-light) !important;
+}
+.navbar-text {
+  color: rgba(245, 232, 200, 0.75) !important;
+}
+
+/* ── Cards ── */
+.card {
+  background-color: rgba(245, 232, 200, 0.95) !important;
+  border: 1px solid var(--border-gold) !important;
+  box-shadow:
+    0  8px 32px rgba(0, 0, 0, 0.55),
+    0  2px  8px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 1px rgba(255, 240, 200, 0.4) !important;
+}
+
+.card-header.bg-dark {
+  background: linear-gradient(
+    135deg, #1A0E05 0%, #3D1F08 60%, #2A1406 100%
+  ) !important;
+  border-bottom: 2px solid var(--border-gold) !important;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px rgba(196, 120, 10, 0.4),
+               0 1px 3px rgba(0, 0, 0, 0.7);
+  color: var(--parchment) !important;
+}
+
+/* Headings inside dark card header → parchment */
+.card-header h1, .card-header h2, .card-header h3,
+.card-header h4, .card-header h5 {
+  color: var(--parchment);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Form controls (on parchment card) ── */
+.form-control, .form-select {
+  background-color: rgba(255, 248, 230, 0.95);
+  border-color: var(--border-gold);
+  color: var(--ink);
+}
+.form-control:focus, .form-select:focus {
+  background-color: #fff8e8;
+  border-color: var(--amber);
+  box-shadow: 0 0 0 0.2rem rgba(196, 120, 10, 0.3);
+  color: var(--ink);
+}
+.form-control::placeholder {
+  color: var(--muted-on-card);
+  opacity: 0.75;
+}
+.form-label {
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+/* ── Buttons ── */
+.btn-dark {
+  --bs-btn-color:               var(--parchment);
+  --bs-btn-bg:                  #2A1406;
+  --bs-btn-border-color:        var(--border-gold);
+  --bs-btn-hover-bg:            #3D1F08;
+  --bs-btn-hover-border-color:  var(--amber-light);
+  --bs-btn-hover-color:         #FFF5DC;
+  --bs-btn-active-bg:           #1A0E05;
+  --bs-btn-active-border-color: var(--amber);
+  letter-spacing: 0.4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(196, 120, 10, 0.2);
+}
+
+.btn-outline-light {
+  --bs-btn-color:              var(--parchment);
+  --bs-btn-border-color:       rgba(245, 232, 200, 0.6);
+  --bs-btn-hover-bg:           rgba(245, 232, 200, 0.15);
+  --bs-btn-hover-color:        #FFF5DC;
+  --bs-btn-hover-border-color: var(--parchment);
+}
+
+.btn-outline-secondary {
+  --bs-btn-color:        var(--muted-on-card);
+  --bs-btn-border-color: var(--border-gold);
+  --bs-btn-hover-color:  var(--parchment);
+  --bs-btn-hover-bg:     var(--wood-mid);
+  --bs-btn-hover-border-color: var(--amber);
+}
+
+/* ── Alerts — work on both wood and parchment ── */
+.alert {
+  border-radius: 2px;
+}
+.alert-danger {
+  background-color: rgba(120, 25, 10, 0.88);
+  border-color: rgba(180, 50, 30, 0.7);
+  color: #FFE0D8;
+}
+.alert-danger .btn-close { filter: invert(1) brightness(2); }
+
+.alert-success {
+  background-color: rgba(25, 80, 25, 0.88);
+  border-color: rgba(50, 140, 50, 0.6);
+  color: #D8F0D0;
+}
+.alert-info {
+  background-color: rgba(60, 40, 8, 0.88);
+  border-color: rgba(196, 120, 10, 0.5);
+  color: var(--parchment);
+}
+
+/* ── ListGroup ── */
+.list-group-item {
+  background-color: rgba(245, 232, 200, 0.88);
+  border-color: rgba(184, 144, 42, 0.4);
+  color: var(--ink-soft);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.list-group-item strong { color: var(--ink); }
+.list-group-item:hover,
+.list-group-item-action:hover {
+  background-color: rgba(232, 208, 160, 0.97);
+  color: var(--ink);
+}
+
+/* ── Route display area ── */
+.bg-light {
+  background-color: rgba(232, 212, 168, 0.85) !important;
+  border: 1px solid var(--border-gold) !important;
+}
+
+/* ── Badges ── */
+.badge.bg-secondary {
+  background-color: var(--wood-mid) !important;
+  color: var(--parchment) !important;
+}
+.badge.bg-dark {
+  background-color: var(--ink) !important;
+  color: var(--parchment) !important;
+  border: 1px solid var(--border-gold);
+}
+
+/* ── Table ── */
+.table {
+  --bs-table-color:        var(--ink-soft);
+  --bs-table-hover-bg:     rgba(232, 208, 160, 0.5);
+  --bs-table-border-color: rgba(184, 144, 42, 0.4);
+  --bs-table-bg:           transparent;
+}
+.table th { color: var(--ink); }
+
+/* ── Progress bar ── */
+.progress {
+  background-color: rgba(92, 48, 16, 0.3);
+  border: 1px solid rgba(184, 144, 42, 0.3);
+}
+
+/* ── Spinner ── */
+.spinner-border {
+  color: var(--amber) !important;
+}
+
+/* ── Planning phase wrapper ── */
+.planning-wrapper {
+  min-height: calc(100vh - 110px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+/* ── Planning map — floating on wood ── */
+.planning-map {
+  width: 100%;
+  max-height: calc(100vh - 420px);
+  object-fit: contain;
+  filter: drop-shadow(3px 5px 16px rgba(0, 0, 0, 0.65))
+          drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
+  border-radius: 3px;
+}
+
+/* ── Setup phase ── */
+.setup-wrapper {
+  min-height: calc(100vh - 110px);
+  padding: 0.5rem 0 1rem;
+}
+.setup-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--parchment);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9),
+               0 0 30px rgba(196, 120, 10, 0.5);
+  letter-spacing: 2px;
+}
+.setup-map {
+  width: 100%;
+  max-width: 1100px;
+  max-height: calc(100vh - 200px);
+  object-fit: contain;
+  filter: drop-shadow(3px 5px 18px rgba(0, 0, 0, 0.7));
+}
+
+/* ── Footer ── */
+.fixed-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(180deg, rgba(15, 7, 1, 0.92) 0%, rgba(10, 5, 1, 0.97) 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-top: 1px solid rgba(184, 144, 42, 0.35) !important;
+  z-index: 1000;
+}
+footer small {
+  color: rgba(245, 232, 200, 0.45) !important;
+}

@@ -3,7 +3,7 @@ import { CheckCircleFill, XCircleFill, ArrowRepeat } from 'react-bootstrap-icons
 
 function ResultPhase({ result, onPlayAgain }) {
   return (
-    <Container fluid>
+    <Container fluid className='d-flex flex-column justify-content-center' style={{ minHeight: 'calc(100vh - 110px)' }}>
       <Card className='shadow-sm text-center'>
         <Card.Header className='bg-dark text-white'>
           <h4 className='mb-0'>Result</h4>
