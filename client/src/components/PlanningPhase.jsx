@@ -13,7 +13,7 @@ function PlanningPhase({ game, segments, onSubmit }) {
   // (registered once) always submits the route built so far, not the
   // empty array captured in its initial closure.
   const routeRef = useRef(route);
-  routeRef.current = route;
+  useEffect(() => { routeRef.current = route; }, [route]);
 
   // Submit guard: prevents a double submit (e.g. manual click + timer
   // expiry, or a rapid double click). Uses a ref so the timer closure
@@ -61,7 +61,6 @@ function PlanningPhase({ game, segments, onSubmit }) {
     <div className='planning-wrapper'>
       <Row className='g-3'>
         <Col md={8} className='d-flex flex-column'>
-          {/* Map floats directly on the wood table */}
           <div className='text-center mb-3'>
             <img
               src={mapStationsImage}

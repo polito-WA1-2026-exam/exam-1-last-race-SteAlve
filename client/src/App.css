@@ -1,9 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap');
 
-/* ══════════════════════════════════════════
-   LAST RACE — Medieval Candlelit Table Theme
-   ══════════════════════════════════════════ */
-
 :root {
   --parchment:      #F5E8C8;
   --parchment-dark: #E8D4A8;
@@ -43,12 +39,6 @@ body {
   padding-top: 62px;
   padding-bottom: 48px;
 }
-
-/* ══════════════════════════════════
-   TYPOGRAPHY
-   Default = on dark wood → LIGHT
-   Override inside card → DARK
-   ══════════════════════════════════ */
 
 h1, h2, h3, h4, h5 {
   font-family: 'Playfair Display', Georgia, serif;

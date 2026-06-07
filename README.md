@@ -34,7 +34,7 @@
 
   - requires login
   - URL parameter: `id` - game id
-  - request body: `{ route: [number] }` - ordered array of station ids
+  - request body: `{ route: [[fromId, toId]] }` - ordered list of segments, each a `[fromId, toId]` pair of connected station ids, in travel order
   - response (valid route): `{ valid: true, steps: [{ from: string, to: string, event: string, effect: number, coinsAfter: number }], finalScore: number }`
   - response (invalid route): `{ valid: false, finalScore: 0 }`
 - GET `/api/leaderboard`

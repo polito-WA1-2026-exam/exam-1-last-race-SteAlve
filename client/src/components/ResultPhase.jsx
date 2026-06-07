@@ -1,4 +1,4 @@
-import { Container, Button, Alert, Card, Badge, Stack } from 'react-bootstrap';
+import { Container, Button, Alert, Card, Badge} from 'react-bootstrap';
 import { CheckCircleFill, XCircleFill, ArrowRepeat } from 'react-bootstrap-icons';
 
 function ResultPhase({ result, onPlayAgain }) {

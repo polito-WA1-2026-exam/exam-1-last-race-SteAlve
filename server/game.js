@@ -64,7 +64,7 @@ export function validateRoute(graph, route, startId, endId) {
         if (used.has(key)) return false;   // segment reused
         used.add(key);
         const last = path[path.length - 1];
-        if      (last === c) path.push(d);
+        if (last === c) path.push(d);
         else if (last === d) path.push(c);
         else return false;
     }
